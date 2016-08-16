@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{% url 'auth_password_reset' as auth_pwd_reset_url %}
+{% url 'registration_register' as register_url%}
+{% if message %}
+<div class="message">{{ message }}</div>
+{% endif %}
+<form action="{% url 'home:authenticate' %}" method="post" class="main-form animate" style="margin-top: 3em;">
+    <h1 class="title">Log In</h1>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" class="btn green-btn main-submit" value="Login">
+</form>
+
+<p class="extra-login-links">
+    <a href="{{ auth_pwd_reset_url }}" style="color: #498FBD;">Forgot</a> your password?
+    <a href="{{ register_url }}" style="color: #498FBD;">Need an account</a>?
+</p>
+{% endblock %}

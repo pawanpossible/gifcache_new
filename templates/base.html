@@ -1,0 +1,131 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{% static '/static/img/favicon.png' %}">
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static '/static/css/main.css' %}">
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        {% if title %}
+        <title>{{ title }} - GifCache</title>
+        {% else %}
+        <title>GifCache</title>
+        {% endif %}
+    </head>
+
+    <body>
+    <!-- Wrapper for 'sticky' footer -->
+    <div class="wrapper">
+        {% if title == 'Home' or title == 'Error' %}
+        <div class="nav hidden">
+        {% else %}
+        <div class="nav">
+        {% endif %}
+            <a href="{% url 'home:home' %}">
+            <div class="nav-logo pulse">
+                <div id="gif" class="nav-logo-title">Gif</div>
+                <div class="nav-logo-circle animate">{% if navgif %}<img src="/static/img/navgif{{ navgif }}.gif">{% endif %}</div>
+                <div id="cache" class="nav-logo-title">Cache</div>
+            </div>
+            </a>
+
+            <div class="nav-links nav-links-small">
+                <i class="small-nav-icon fa fa-bars animate-fast"></i>
+                {% if user.is_authenticated %}
+                <div class="small-nav-container hidden">
+                {% else %}
+                <div class="small-nav-container small-nav-extra hidden">
+                {% endif %}
+                    <a href="{% url 'home:home' %}" class="animate-fast">HOME</a>
+                    {% if user.is_authenticated %}
+                    <div class="profile-nav-link animate-fast">PROFILE
+                        <div class="profile-nav-extra hidden">
+                            <a href="/u/{{ user.username }}" class="animate-fast">My Profile</a>
+                            <a href="{% url 'home:logout' %}" class="animate-fast">Logout</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <a href="{% url 'registration_register' %}" class="animate-fast">SIGNUP</a>
+                    <a href="{% url 'home:login' %}" class="animate-fast">LOGIN</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a href="{% url 'home:home' %}" class="animate-fast">HOME</a>
+                {% if user.is_authenticated %}
+                <div class="profile-nav-link animate-fast">PROFILE
+                    <div class="profile-nav-extra hidden">
+                        <a href="/u/{{ user.username }}" class="animate-fast">My Profile</a>
+                        <a href="{% url 'home:logout' %}" class="animate-fast">Logout</a>
+                    </div>
+                </div>
+                {% else %}
+                <a href="{% url 'registration_register' %}" class="animate-fast">SIGNUP</a>
+                <a href="{% url 'home:login' %}" class="animate-fast">LOGIN</a>
+                {% endif %}
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+        <!-- Push element for 'sticky' footer -->
+        <div class="push"></div>
+    </div>
+
+    <div class="footer">
+        <a href="{% url 'home:home' %}" class="animate-fast">
+            <div class="footer-logo">
+                <div class="footer-gif">Gif</div>
+                <div class="footer-cache">Cache</div>
+            </div>
+        </a>
+
+        <div class="footer-problems">
+            <p>Problems? Feedback?</p>
+            <div>
+                <i class="fa fa-paper-plane"></i>
+                <a href="mailto:tylerkershner@gmail.com" class="animate-fast">Contact Me</a>
+            </div>
+        </div>
+
+        <div class="footer-nav-links">
+            {% if user.is_authenticated %}
+            <a href="/u/{{ user.username }}" class="animate-fast">My Profile</a>
+            <a href="{% url 'home:logout' %}" class="animate-fast">Logout</a>
+            {% else %}
+            <a href="{% url 'registration_register' %}" class="animate-fast">SIGNUP</a>
+            <a href="{% url 'home:login' %}" class="animate-fast">LOGIN</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- JavaScripts -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="{% static '/static/js/jquery-color.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/static/js/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.3.2/randomColor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="{% static '/static/js/packery-mode.pkgd.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/static/js/jPages.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/static/js/main.js' %}"></script>
+    <script>
+        $(document).ready(function () {clickGifElements('{{ can_edit }}');});
+    </script>
+    <!-- Google Analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-67076921-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    </body>
+</html>

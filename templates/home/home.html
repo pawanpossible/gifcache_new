@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="landing-page" class="home-section animate-bg" style="height: 100vh; background-color: #25B972;">
+    <div class="landing-shade lightest animate"></div>
+    <div class="landing-shade lighter animate"></div>
+    <div class="landing-shade darker animate"></div>
+
+    <div id="main-logo">
+        <div class="main-logo-gif transparent pulse animate">Gif</div>
+        <div class="main-logo-img grow"><img src="/static/img/homegif{{ home_gif }}.gif"></div>
+        <div class="main-logo-cache transparent pulse animate">Cache</div>
+    </div>
+
+    <div class="slogan transparent animate">Store, organize, and display your favorite gifs</div>
+
+    <div class="home-links-wrapper animate transparent">
+        <div id="home-links" class="animate">
+            <a href="{% url 'registration_register' %}"><div class="home-btn lobster animate-fast">Sign Up</div></a>
+            <a href="{% url 'home:login' %}"><div class="home-btn lobster animate-fast">Log In</div></a>
+        </div>
+
+        <i class="home-arrow fa fa-chevron-down levitate transparent animate"></i>
+    </div>
+</div>
+
+<div class="home-section-grey" style="padding: 4em 0;">
+    <div class="home-bs-title">What is GifCache?</div>
+
+    <div class="startup-bs-box">
+        <div class="startup-icon"><i class="fa fa-floppy-o"></i></div>
+        <div class="startup-bs-title">Store</div>
+        <div class="startup-bs-blurb">Save gifs from the internet</div>
+        <div id="gif1" class="startup-bs-img img-swap animate"><video src="/static/img/gifcache_gif1.mp4" autoplay loop poster="../static/img/gifcache_thumbnail1.png"></video></div>
+    </div>
+
+    <div class="startup-bs-box">
+        <div class="startup-icon"><i class="fa fa-folder-open"></i></div>
+        <div class="startup-bs-title">Organize</div>
+        <div class="startup-bs-blurb">Tag and sort your collection</div>
+        <div id="gif2" class="startup-bs-img img-swap animate"><video src="/static/img/gifcache_gif2.mp4" autoplay loop poster="../static/img/gifcache_thumbnail2.png"></video></div>
+    </div>
+
+    <div class="startup-bs-box">
+        <div class="startup-icon"><i class="fa fa-users"></i></div>
+        <div class="startup-bs-title">Share</div>
+        <div class="startup-bs-blurb">Show off your cache!</div>
+        <div id="gif3" class="startup-bs-img img-swap animate"><video src="/static/img/gifcache_gif3.mp4" autoplay loop poster="../static/img/gifcache_thumbnail3.png"></video></div>
+    </div>
+
+    <div class="home-demo">
+        <div class="home-demo-blurb">View my cache!</div>
+        <a href="/u/kershner25"><div class="btn green-btn">u/kershner25</div></a>
+    </div>
+</div>
+
+<div class="home-section chrome-extension-section">
+    <div class="landing-shade lightest animate"></div>
+    <div class="landing-shade lighter animate"></div>
+    <div class="landing-shade darker animate"></div>
+
+    <div class="inner">
+        <div class="new-btn pulse">New!</div>
+        <div class="feature-title"><span class="colorwave-extension">Chrome Extension</span></div>
+        <div class="feature-slogan">Save gifs to your cache from anywhere on the internet</div>
+        <div id="gif4" class="feature-img img-swap"><video src="/static/img/gifcache_gif4.mp4" autoplay loop poster="../static/img/gifcache_thumbnail4.png"></video></div>
+        <a href="https://chrome.google.com/webstore/detail/gifcache-chrome-extension/hlhadacmblbgnlbccdlhmjoffbpjhjch" class="code-link-wrapper"><div class="code-link extension-btn animate">Add to Chrome!</div></a>
+    </div>
+</div>
+
+<div class="home-section-grey features-section" style="padding: 0;">
+    <div class="feature">
+        <div id="feature-speed" class="feature-title">Built for <span class="colorwave-speed pulse">Speed</span></div>
+        <div id="gif5" class="feature-img img-swap"><video src="/static/img/gifcache_gif5.mp4" autoplay loop poster="../static/img/gifcache_thumbnail5.png"></video></div>
+        <div class="feature-blurb">
+            Compressed thumbnails are generated for each submitted gif and hosted on Amazon S3.  Full gifs are only
+            downloaded when directly requested.
+        </div>
+    </div>
+
+    <div class="feature" style="background-color: white;">
+        <div id="feature-dailygifs" class="feature-title">New Gifs <span class="colorwave-dailygifs pulse">Daily</span></div>
+        <div id="gif6" class="feature-img img-swap"><video src="/static/img/gifcache_gif6.mp4" autoplay loop poster="../static/img/gifcache_thumbnail6.png"></video></div>
+        <div class="feature-blurb">
+            Use the included GifGrabber application to add gifs to your Cache directly from reddit.
+        </div>
+    </div>
+
+    <div class="feature">
+        <div id="feature-validation" class="feature-title">Automatic <span class="colorwave-validation pulse">Validation</span></div>
+        <div id="gif7" class="feature-img img-swap"><video src="/static/img/gifcache_gif7.mp4" autoplay loop poster="../static/img/gifcache_thumbnail7.png"></video></div>
+        <div class="feature-blurb">
+            The validation service allows you to verify that your Cache URLs are valid and unique.
+        </div>
+    </div>
+</div>
+
+<div class="home-section animate-bg" style="padding: 5em 0;">
+    <div class="home-about">
+        <div class="home-about-section">
+            <div class="mini-logo">
+                <div class="mini-logo-gif">Gif</div><div class="mini-logo-cache">Cache</div>
+            </div>
+            is a service to store and categorize GIF urls.
+        </div>
+
+        <div class="home-about-section">
+            Ever had the perfect GIF in mind but couldn't remember the URL or where you last saw it?
+            GifCache is an easy way to keep track of those images so you'll never miss another opportunity to deploy
+            the ideal reaction GIF or share some adorable puppies.
+            <br><br>
+            Using GifCache there is no need to save images to your hard drive or to keep an unorganized list of URLs
+            in a text file somewhere.  Simply point your browser to your GifCache profile and your collection is immediately
+            accessible.
+        </div>
+
+        <div class="home-about-section">
+            A note on using GifCache - when viewing numerous GIFs bandwidth usage
+            can easily hit hundreds of megabytes very quickly.
+        </div>
+
+        <div class="home-about-section">
+            GifCache is written in Python and JavaScript utilizing the Django web framework.
+            <a href="https://github.com/kershner/gifcache" class="code-link-wrapper animate">
+                <div class="code-link animate"><i class="fa fa-github"></i>View the code!</div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

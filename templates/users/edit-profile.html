@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="/u/{{ username }}/update-profile/" method="post" class="main-form animate" style="margin-top: 3em;">
+    <div class="edit-profile-delete-wrapper hidden">
+        <div class="edit-profile-delete">
+            <p>Are you sure?  This cannot be undone!</p>
+            <a href="/u/{{ username }}/delete-profile/"><div class="btn red-btn delete-profile">Delete Profile</div></a>
+            <div class="btn green-btn cancel-delete-profile">Cancel</div>
+        </div>
+    </div>
+
+    <div class="delete-profile-button"><p>Delete Profile</p><i class="fa fa-times"></i></div>
+
+    <h1 class="title">Edit Profile</h1>
+    {% csrf_token %}
+    <input type="text" maxlength="20" name="nickname" value="{{ nickname }}" class="main-field animate">
+    <div class="label">Nickname</div>
+
+    <div class="edit-profile-avatar">
+        <div class="img-wrapper">
+        {% if avatar_url == '' %}
+            <img src="/static/img/default-user-image.png">
+        {% elif element == 'img' %}
+            <img src="{{ avatar_url }}">
+        {% elif element == 'video' %}
+            <video src="{{ avatar_url }}" autoplay loop></video>
+        {% endif %}
+        </div>
+        <input type="text" name="avatar_url" value="{{ avatar_url }}" class="main-field animate">
+        <div class="label">Avatar<br>gif/gifv/mp4/webm/gfycat URL</div>
+    </div>
+
+    <input type="submit" class="btn green-btn main-submit" value="Submit">
+</form>
+
+<br>
+<div style="text-align: center;">
+    <a href="/u/{{ username }}">
+    <div class="back-to-cache btn green-btn">
+        <i class="fa fa-long-arrow-left"></i>Back to Cache
+    </div>
+</div>
+{% endblock content %}

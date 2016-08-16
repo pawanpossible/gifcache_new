@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
+<div class="home-section animate-bg" style="padding-top: 5.2em; padding-bottom: .25em;">
+    <div id="main-logo">
+        <div class="main-logo-img spin"><img src="/static/img/homegif{{ home_gif }}.gif"></div>
+        <div class="error-code pulse">404</div>
+    </div>
+    <div class="slogan" style="bottom: 4em;">Page Not Found</div>
+</div>
+{% endblock %}
